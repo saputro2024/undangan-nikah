@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Romeo & Juliet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+<audio id="weddingSong" loop>
+    <source src="paulyudin-wedding-485932.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+</audio>
+
+<div id="music-control" onclick="toggleMusic()">
+    <span id="music-icon">🎵</span>
+</div>
+
+<div id="overlay">
+    <div class="overlay-content">
+        <h2>Selamat Datang</h2>
+        <p>Di Undangan Pernikahan</p>
+        <h1>Romeo & Juliet</h1>
+        <button class="btn" onclick="startWedding()">Buka Undangan</button>
+    </div>
+</div>
+    <section class="hero">
+        <div class="hero-content">
+            <h3>The Wedding of</h3>
+            <h1>Romeo & Juliet</h1>
+            <p>12 . 12 . 2026</p>
+        </div>
+    </section>
+
+    <section class="details">
+        <div class="quotes" style="max-width: 600px; margin: 0 auto 40px; font-style: italic; color: #777;">
+    <p>"Di antara miliaran jiwa di dunia, kami dipertemukan oleh waktu dan dipersatukan oleh cinta. Kami mengundang Anda untuk menjadi bagian dari awal perjalanan selamanya kami."</p>
+</div>
+        <h2>Save the Date</h2>
+        <p>Kami mengundang Anda untuk merayakan hari bahagia kami pada:</p>
+        
+        <div id="countdown">
+    <div class="countdown-item">
+        <span id="days">00</span>
+        <p>Hari</p>
+    </div>
+    <div class="countdown-item">
+        <span id="hours">00</span>
+        <p>Jam</p>
+    </div>
+    <div class="countdown-item">
+        <span id="minutes">00</span>
+        <p>Menit</p>
+    </div>
+    <div class="countdown-item">
+        <span id="seconds">00</span>
+        <p>Detik</p>
+    </div>
+</div>
+        <div class="info-grid">
+    <div class="card">
+        <h3>Akad Nikah</h3>
+        <p><strong>09.00 - 10.00 WIB</strong></p>
+        <p>Masjid Raya Pusat</p>
+        <p>Jl. Melati No. 123, Jakarta</p>
+        <br>
+        <a href="https://www.google.com/maps/search/?api=1&query=Masjid+Raya+Pusat" 
+           target="_blank" class="btn-small">Lihat Lokasi</a>
+    </div>
+
+    <div class="card">
+        <h3>Resepsi</h3>
+        <p><strong>11.00 - 13.00 WIB</strong></p>
+        <p>Gedung Serbaguna Indah</p>
+        <p>Jl. Mawar No. 45, Jakarta</p>
+        <br>
+        <a href="https://www.google.com/maps/search/?api=1&query=Gedung+Serbaguna+Indah" 
+           target="_blank" class="btn-small">Lihat Lokasi</a>
+    </div>
+</div>
+
+        <a href="https://wa.me/628123456789?text=Halo!%20Saya%20ingin%20konfirmasi%20kehadiran%20di%20acara%20pernikahan%20kalian." class="btn">
+    Konfirmasi Kehadiran via WhatsApp
+</a>
+    </section>
+
+    <footer>
+        <p>Dibuat dengan ❤️ oleh Kami</p>
+    </footer>
+<script>
+    // Atur tanggal pernikahan (Tahun, Bulan-1, Tanggal, Jam, Menit)
+    const weddingDate = new Date("Dec 12, 2026 09:00:00").getTime();
+
+    const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML = "HARI BAHAGIA TELAH TIBA!";
+        }
+    }, 1000);
+</script>
+<script>
+    const song = document.getElementById("weddingSong");
+    const overlay = document.getElementById("overlay");
+    const icon = document.getElementById("music-icon");
+
+    function startWedding() {
+        // Hilangkan overlay
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+            overlay.style.display = "none";
+        }, 800);
+
+        // Putar musik
+        song.play();
+    }
+
+    function toggleMusic() {
+        if (song.paused) {
+            song.play();
+            icon.innerHTML = "🎵";
+        } else {
+            song.pause();
+            icon.innerHTML = "🔇";
+        }
+    }
+</script>
+</body>
+</html>
